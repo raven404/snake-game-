@@ -2,11 +2,10 @@ from tkinter import *
 import random
 
 # Global variables used
-WIDTH = 800
-HEIGHT = 600
+WIDTH = 1000
+HEIGHT = 800
 SEG_SIZE = 20
 IN_GAME = True
-
 
 # Function used for creating prey for the snake to be eaten
 def create_block():
@@ -16,9 +15,12 @@ def create_block():
     BLOCK = c.create_oval(posx, posy,
                           posx+SEG_SIZE, posy+SEG_SIZE,
                           fill="red")
+
 # main function to control the processing of the game
 def main():
+
     global IN_GAME
+
     if IN_GAME:
         s.move()
         #setting the coordinates for the moving snake
@@ -40,6 +42,7 @@ def main():
                 if head_coords == c.coords(s.segments[index].instance):
                     IN_GAME = False
         root.after(100, main)
+
     # stop game and print message when game overs
     else:
         c.create_text(WIDTH/2, HEIGHT/2,
@@ -49,11 +52,12 @@ def main():
 
 # class which determine the snakes formation throughout the game and segment
 class Segment(object):
-    """ Single snake segment """
+    #Single snake segment
     def __init__(self, x, y):
         self.instance = c.create_rectangle(x, y,
                                            x+SEG_SIZE, y+SEG_SIZE,
                                            fill="white")
+
 # class which holds functions for determining the mmovement of the snake throughout the game
 class Snake(object):
 
@@ -84,5 +88,3 @@ class Snake(object):
         x = last_seg[2] - SEG_SIZE
         y = last_seg[3] - SEG_SIZE
         self.segments.insert(0, Segment(x, y))
-
-    
