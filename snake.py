@@ -8,18 +8,16 @@ SEG_SIZE = 20
 IN_GAME = True
 
 
-# Function used for creating prey for the snake
+# Function used for creating prey for the snake to be eaten
 def create_block():
-    """ Creates an apple to be eaten """
     global BLOCK
     posx = SEG_SIZE * random.randint(1, (WIDTH-SEG_SIZE) / SEG_SIZE)
     posy = SEG_SIZE * random.randint(1, (HEIGHT-SEG_SIZE) / SEG_SIZE)
     BLOCK = c.create_oval(posx, posy,
                           posx+SEG_SIZE, posy+SEG_SIZE,
                           fill="red")
-# main function to control the game
+# main function to control the processing of the game
 def main():
-    """ Handles game process """
     global IN_GAME
     if IN_GAME:
         s.move()
@@ -49,16 +47,17 @@ def main():
                       font="Arial 20",
                       fill="red")
 
-# class which determine the snakes formation th roughout the game and segment
+# class which determine the snakes formation throughout the game and segment
 class Segment(object):
     """ Single snake segment """
     def __init__(self, x, y):
         self.instance = c.create_rectangle(x, y,
                                            x+SEG_SIZE, y+SEG_SIZE,
                                            fill="white")
-# class ehich holds functions for determining the mmovement of the snake throughout the game
+# class which holds functions for determining the mmovement of the snake throughout the game
 class Snake(object):
-    """ initializing the snakes movement """
+
+    #initializing the movement of the snake
     def __init__(self, segments):
         self.segments = segments
         # possible moves
@@ -66,9 +65,9 @@ class Snake(object):
                         "Up": (0, -1), "Left": (-1, 0)}
         # initial movement direction
         self.vector = self.mapping["Right"]
-        # defination for moving the snake automatically
+
+    #defination for moving the snake automatically with the specified vector
     def move(self):
-        """ Moves the snake with the specified vector"""
         for index in range(len(self.segments)-1):
             segment = self.segments[index].instance
             x1, y1, x2, y2 = c.coords(self.segments[index+1].instance)
@@ -78,3 +77,12 @@ class Snake(object):
         c.coords(self.segments[-1].instance,
                  x1+self.vector[0]*SEG_SIZE, y1+self.vector[1]*SEG_SIZE,
                  x2+self.vector[0]*SEG_SIZE, y2+self.vector[1]*SEG_SIZE)
+
+    #defination for adding the segment to the snake
+    def add_segment(self):
+        last_seg = c.coords(self.segments[0].instance)
+        x = last_seg[2] - SEG_SIZE
+        y = last_seg[3] - SEG_SIZE
+        self.segments.insert(0, Segment(x, y))
+
+    
