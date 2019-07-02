@@ -17,6 +17,7 @@ def create_block():
     BLOCK = c.create_oval(posx, posy,
                           posx+SEG_SIZE, posy+SEG_SIZE,
                           fill="red")
+
 def main():
     """ Handles game process """
     global IN_GAME
@@ -52,4 +53,3 @@ class Segment(object):
         self.instance = c.create_rectangle(x, y,
                                            x+SEG_SIZE, y+SEG_SIZE,
                                            fill="white")
-
