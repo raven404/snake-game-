@@ -23,9 +23,10 @@ def main():
     global IN_GAME
     if IN_GAME:
         s.move()
+        #setting the coordinates for the moving snake
         head_coords = c.coords(s.segments[-1].instance)
         x1, y1, x2, y2 = head_coords
-        # Check for collision with gamefield edges
+        # Checking for the collision with walls of gamefield
         if x2 > WIDTH or x1 < 0 or y1 < 0 or y2 > HEIGHT:
             IN_GAME = False
         # Eating apples
