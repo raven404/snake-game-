@@ -29,12 +29,14 @@ def main():
         # Checking for the collision with walls of gamefield
         if x2 > WIDTH or x1 < 0 or y1 < 0 or y2 > HEIGHT:
             IN_GAME = False
+        if x2 > WIDTH or x1 <0 or y1 < 0 or y2 > HEIGHT :
+            IN_GAME = False
         # Eating apples
         elif head_coords == c.coords(BLOCK):
             s.add_segment()
             c.delete(BLOCK)
             create_block()
-        # Self-eating
+        # Bitting up itself / Self-Eating
         else:
             for index in range(len(s.segments)-1):
                 if head_coords == c.coords(s.segments[index].instance):
@@ -45,7 +47,7 @@ def main():
         c.create_text(WIDTH/2, HEIGHT/2,
                       text="GAME OVER!",
                       font="Arial 20",
-                      fill="red")
+                      fill="red")n
 
 
 class Segment(object):
