@@ -56,3 +56,12 @@ class Segment(object):
         self.instance = c.create_rectangle(x, y,
                                            x+SEG_SIZE, y+SEG_SIZE,
                                            fill="white")
+class Snake(object):
+    """ Simple Snake class """
+    def __init__(self, segments):
+        self.segments = segments
+        # possible moves
+        self.mapping = {"Down": (0, 1), "Right": (1, 0),
+                        "Up": (0, -1), "Left": (-1, 0)}
+        # initial movement direction
+        self.vector = self.mapping["Right"]
