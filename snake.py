@@ -42,12 +42,12 @@ def main():
                 if head_coords == c.coords(s.segments[index].instance):
                     IN_GAME = False
         root.after(100, main)
-    # Not IN_GAME -> stop game and print message
+    # stop game and print message when game overs
     else:
         c.create_text(WIDTH/2, HEIGHT/2,
-                      text="GAME OVER!",
+                      text="GAME OVER!!!",
                       font="Arial 20",
-                      fill="red")n
+                      fill="red")
 
 
 class Segment(object):
