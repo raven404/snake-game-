@@ -88,3 +88,9 @@ class Snake(object):
         x = last_seg[2] - SEG_SIZE
         y = last_seg[3] - SEG_SIZE
         self.segments.insert(0, Segment(x, y))
+  
+    # function defination for changing the direction of the snake
+    def change_direction(self, event):
+        if event.keysym in self.mapping:
+            self.vector = self.mapping[event.keysym]
+
