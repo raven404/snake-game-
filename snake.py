@@ -93,4 +93,9 @@ class Snake(object):
     def change_direction(self, event):
         if event.keysym in self.mapping:
             self.vector = self.mapping[event.keysym]
+   
+    # preparing the platform/screen/window for the game
+    root = Tk()
+    root.title("Classic python game")
+    c = Canvas(root, width=WIDTH, height=HEIGHT, bg="#003300")
 
