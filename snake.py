@@ -98,4 +98,18 @@ class Snake(object):
     root = Tk()
     root.title("Classic python game")
     c = Canvas(root, width=WIDTH, height=HEIGHT, bg="#003300")
+    c.grid()
+# cat
+c.focus_set()
+# creating segments and snake
+segments = [Segment(SEG_SIZE, SEG_SIZE),
+            Segment(SEG_SIZE*2, SEG_SIZE),
+            Segment(SEG_SIZE*3, SEG_SIZE)]
+s = Snake(segments)
+# Reaction when key is pressed
+c.bind("<KeyPress>", s.change_direction)
+
+create_block()
+main()
+root.mainloop()
 
